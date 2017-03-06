@@ -1,0 +1,20 @@
+{
+  "name": "api-webservice",
+  "version": "1.0.0",
+  "description": "Proyecto de la materia WebService IUT de Metz",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Edwin JIMENEZ",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.16.1",
+    "express": "^4.14.1",
+    "mongoose": "^4.8.4"
+  },
+  "devDependencies": {
+    "nodemon": "^1.11.0"
+  }
+}
