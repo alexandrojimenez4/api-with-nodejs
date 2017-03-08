@@ -28,7 +28,7 @@ function saveProduct(req, res){
 
 	let product = new Product()
 	product.name = req.body.name
-	product.picture = requ.body.picture
+	product.picture = req.body.picture
 	product.price = req.body.price
 	product.category = req.body.category
 	product.description = req.body.description
