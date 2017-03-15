@@ -22,6 +22,23 @@ function getProducts(req, res){
 	})
 }
 
+function getProductsHommes(req, res){
+	Product.find({ category : /femme/ }, (err, products) => {
+		if (err) return res.status(500).send({ message: `Error al realizar la peticion: ${err}`})
+		if (!products) return res.status(404).send({message: `No existen productos`})
+
+		res.send(200, { products })
+	})
+}
+
+function getProductsFemmes(req, res){
+	
+}
+
+function getProductsEnfants(req, res){
+	
+}
+
 function saveProduct(req, res){
 	console.log('POST /api/product')
 	console.log(req.body)
@@ -32,6 +49,7 @@ function saveProduct(req, res){
 	product.price = req.body.price
 	product.category = req.body.category
 	product.description = req.body.description
+	product.stock = req.body.stock
 
 	product.save((err, productStored) => {
 		if(err) res.status(500).send({ message: `Error al guardar: ${err}`})
@@ -43,6 +61,7 @@ function saveProduct(req, res){
 function updateProduct(req, res){
 	let productId = req.params.productId
 	let update = req.body
+	console.log(update)
 	Product.findByIdAndUpdate(productId, update, (err, productUpdated) => {
 		if(err) res.status(500).send({ message: `Error al actualizar el producto: ${err}`})
 
@@ -65,6 +84,9 @@ function deleteProduct(req, res){
 module.exports = {
 	getProduct,
 	getProducts,
+	getProductsHommes,
+	getProductsFemmes,
+	getProductsEnfants,
 	saveProduct,
 	updateProduct,
 	deleteProduct
