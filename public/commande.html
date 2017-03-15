@@ -8,7 +8,7 @@
 
 <meta charset="utf-8" />
 
-<title>BikeeShop</title>
+<title>BikeeShop - Commande</title>
 
 
 <!-- feuilles de styles -->
@@ -18,19 +18,19 @@
 <!-- scripts -->
 <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
 <script type="text/javascript" src="js/site.js"></script>
-
-<script type="text/javascript" src="js/webservice.js"></script>
+<script src="js/formulaire.js"></script>
+<script src="js/mon-script.js"></script> 
 </head>
 
 <body>
 	
-	<div id="menu">
+		<div id="menu">
     	<a href="javascript:;" class="close"></a>
 		<ul>
 			<li class="active"><a href="index.html">Home</a></li>
-            <li><a href='#' id='homme'>Vélo homme</a></li>
-			<li><a id="femme" href="catalogue.html">Vélo femme</a></li>
-            <li><a id="enfants" href="catalogue.html">Vélo enfants</a></li>
+            <li><a href="catalogue.html">Vélo homme</a></li>
+			<li><a href="catalogue.html">Vélo femme</a></li>
+            <li><a href="catalogue.html">Vélo enfants</a></li>
             
 			<li><a href="panier.html">Mon Panier</a></li>
               
@@ -50,7 +50,7 @@ Total articles :</div>
     	<a href="javascript:;" class="close"></a>
 		<ul>
 			<li class="active"><a href="index.html">Home</a></li>
-            <li><a href='#' id='homme'>Vélo homme</a></li>
+            <li><a href="catalogue.html">Vélo homme</a></li>
 			<li><a href="catalogue.html">Vélo femme</a></li>
             <li><a href="catalogue.html">Vélo enfants</a></li>
             
@@ -60,23 +60,41 @@ Total articles :</div>
 	  </ul>
 	</div>
   </div>
+        
+        <div id="message">
+        
+<div id="etap01">
+<form id="etape01_form">
+<h2>Validation de votre commande</h2>
 
-      <div id="produitsHome">
-       
-<h1>Nos vélos meuilleurs ventes</h1>
+<input type="text" id="name" placeholder="Nom de famille"/>
+<div class="erreur"></div>
+<br />
+<input type="text" id="prenom" placeholder="Prénom"/>
+<div class="erreur"></div>
+<br />
+<input type="text" id="email" placeholder="Votre email" />
+<div class="erreur"></div>
+<br />
+<input type="button" id="btn_etape01" value="PASSER LA COMMANDE"/>
+</form>
+</div>     
             
 
-          
+          <div style="clear:both"></div>
             
-            
-            </div>
-            
-  </div>	
+    	</div><!-- #articles -->
+        
+</div><!-- #page -->
+	
+<div id="commande"><p align="center"><a href="index.html">Annuler la commande</a></p>
+<h2>Le résumé de votre saisie: </h2>
+	
+	<div id="saisie"> 
+	</div>
+<p><a id="modifier" href="#">Modifier</a></p>
 
- 
-<script>
-
-</script>
-
+<p><a href="confirmation.html">Valider la commande</a></p>	
+</div>
 </body>
 </html>
