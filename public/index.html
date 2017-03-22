@@ -1,99 +1,113 @@
-<<<<<<< HEAD
-<html ng-app>
-<head>
-  <title>Hello World in AngularJS</title>
-=======
 ﻿<!DOCTYPE html>
-<!--[if lt IE 7 ]> <html lang="en" class="ie ie6"> <![endif]-->
-<!--[if IE 7 ]>    <html lang="en" class="ie ie7"> <![endif]-->
-<!--[if IE 8 ]>    <html lang="en" class="ie ie8"> <![endif]-->
-<!--[if IE 9 ]>    <html lang="en" class="ie ie9"> <![endif]-->
-<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en"> <!--<![endif]-->
 <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>BikeeShop - Acceuil</title>
 
-<meta charset="utf-8" />
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-<title>BikeeShop</title>
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 
 
-<!-- feuilles de styles -->
-<link type="text/css" href="css/style.css" rel="stylesheet" media="screen" />
-<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,800,700,600,300' rel='stylesheet' type='text/css'>
-
-<!-- scripts -->
-<script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
-<script type="text/javascript" src="js/site.js"></script>
-
-<script type="text/javascript" src="js/webservice.js"></script>
->>>>>>> origin/master
+	<!-- feuilles de styles -->
+    <link rel="stylesheet" href="css/colors.css">
 </head>
 
 <body>
-<<<<<<< HEAD
-<input ng-model="name"> Hello {{ name }}
-<script
-  src="https://code.jquery.com/jquery-3.1.1.js"
-  integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
-  crossorigin="anonymous">
-  	
-</script>
-<script src="main.js"></script>
-=======
 	
-	<div id="menu">
-    	<a href="javascript:;" class="close"></a>
-		<ul>
-			<li class="active"><a href="index.html">Home</a></li>
-            <li><a href='#' id='homme'>Vélo homme</a></li>
-			<li><a id="femme" href="catalogue.html">Vélo femme</a></li>
-            <li><a id="enfants" href="catalogue.html">Vélo enfants</a></li>
-            
-			<li><a href="panier.html">Mon Panier</a></li>
-              
-			
-	  </ul>
-	</div>
-    
-    <div id="page">
-    	 <div id="header">
-    	<a href="index.html" id="logo">
-        <img src="img/logo.png" width="164" height="36"> 
-        </a>
-        <div id="monPanier">Mon Panier<br>
-Total articles :</div>
-        <a href="javascript:;" class="menu_btn"></a>
-        <div id="menu_horizontal">
-    	<a href="javascript:;" class="close"></a>
-		<ul>
-			<li class="active"><a href="index.html">Home</a></li>
-            <li><a href='#' id='homme'>Vélo homme</a></li>
-			<li><a href="catalogue.html">Vélo femme</a></li>
-            <li><a href="catalogue.html">Vélo enfants</a></li>
-            
-		
-             
-			
-	  </ul>
-	</div>
-  </div>
+	<nav class="navbar navbar-default navbar-fixed-top cafe">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="index.html"><img alt="Brand" src="img/logo2.png"></a>
+        </div>
 
-      <div id="produitsHome">
-       
-<h1>Nos vélos meuilleurs ventes</h1>
-            
-
-          
-            
-            
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav" id="menu">
+            <li class="active"><a href="#">Home <span class="sr-only">(current)</span></a></li>
+            <li><a href="#homme">Vélo hommes</a></li>
+            <li><a href="#femme">Vélo femmes</a></li>
+            <li><a href="#enfant">Vélo enfants</a></li>
+          </ul>
+          <form class="navbar-form navbar-left">
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Search">
             </div>
-            
-  </div>	
+            <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+          </form>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#">Mon compte</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Mon panier <span class="badge" id="badgePanier"></span> <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <table class="listPanier" id="listInfo">
+                                
+                            </table>
+                        </div>
+                    </div>
+                </li>
+                <li role="separator" class="divider"></li>
+                <li><a class="text-center" href="panier.html">Affichier mon panier</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+    
+    <div class="container">
+    	<div class="jumbotron">
+	    	<h1>Hello, world!</h1>
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga voluptas quaerat voluptatum eum, autem, unde error earum dicta reprehenderit id!</p>
+			<p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>
+		</div>
+		<div id="produits">
+			<!-- contenido -->
+			<div class="sk-fading-circle">
+				<div class="sk-circle1 sk-circle"></div>
+				<div class="sk-circle2 sk-circle"></div>
+				<div class="sk-circle3 sk-circle"></div>
+				<div class="sk-circle4 sk-circle"></div>
+				<div class="sk-circle5 sk-circle"></div>
+				<div class="sk-circle6 sk-circle"></div>
+				<div class="sk-circle7 sk-circle"></div>
+				<div class="sk-circle8 sk-circle"></div>
+				<div class="sk-circle9 sk-circle"></div>
+				<div class="sk-circle10 sk-circle"></div>
+				<div class="sk-circle11 sk-circle"></div>
+				<div class="sk-circle12 sk-circle"></div>
+			</div>
+		</div>
 
- 
-<script>
+ 	</div>
+ 	<div id="alertAjouter" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+	  <div class="modal-dialog modal-sm" role="document">
+	    <div class="modal-content">
+	      Article ajouté avec success!
+	    </div>
+	  </div>
+	</div>
 
-</script>
+ 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="js/jquery-3.1.1.min.js"></script>
+    
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
->>>>>>> origin/master
+	<script src="js/webservice.js"></script>
 </body>
 </html>

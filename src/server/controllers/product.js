@@ -23,7 +23,7 @@ function getProducts(req, res){
 }
 
 function getProductsHommes(req, res){
-	Product.find({ category : /femme/ }, (err, products) => {
+	Product.find({ category : "homme" }, (err, products) => {
 		if (err) return res.status(500).send({ message: `Error al realizar la peticion: ${err}`})
 		if (!products) return res.status(404).send({message: `No existen productos`})
 
@@ -32,11 +32,21 @@ function getProductsHommes(req, res){
 }
 
 function getProductsFemmes(req, res){
-	
+	Product.find({ category : "femme" }, (err, products) => {
+		if (err) return res.status(500).send({ message: `Error al realizar la peticion: ${err}`})
+		if (!products) return res.status(404).send({message: `No existen productos`})
+
+		res.send(200, { products })
+	})
 }
 
 function getProductsEnfants(req, res){
-	
+	Product.find({ category : "enfant" }, (err, products) => {
+		if (err) return res.status(500).send({ message: `Error al realizar la peticion: ${err}`})
+		if (!products) return res.status(404).send({message: `No existen productos`})
+
+		res.send(200, { products })
+	})
 }
 
 function saveProduct(req, res){

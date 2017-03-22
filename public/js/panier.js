@@ -1,48 +1,65 @@
-function LignePanier (code, qte, prix)
-{
-    this.codeArticle = code;
-    this.qteArticle = qte;
-    this.prixArticle = prix;
-    this.ajouterQte = function(qte)
-    {
-        this.qteArticle += qte;
-    }
-    this.getPrixLigne = function()
-    {
-        var resultat = this.prixArticle * this.qteArticle;
-        return resultat;
-    }
-    this.getCode = function() 
-    {
-        return this.codeArticle;
-    }
-}
+var list = JSON.parse(sessionStorage.listPanier);
 
-function Panier()
-{
-    this.liste = [];
-    this.ajouterArticle = function(code, qte, prix)
-    { 
-        var index = this.getArticle(code);
-        if (index == -1) this.liste.push(new LignePanier(code, qte, prix));
-        else this.liste[index].ajouterQte(qte);
-    }
-    this.getPrixPanier = function()
-    {
-        var total = 0;
-        for(var i = 0 ; i < this.liste.length ; i++)
-            total += this.liste[i].getPrixLigne();
-        return total;
-    }
-    this.getArticle = function(code)
-    {
-        for(var i = 0 ; i <this.liste.length ; i++)
-            if (code == this.liste[i].getCode()) return i;
-        return -1;
-    }
-    this.supprimerArticle = function(code)
-    {
-        var index = this.getArticle(code);
-        if (index > -1) this.liste.splice(index, 1);
-    }
+$().ready(function () {
+
+    renderPanier();
+
+    var $badge = $('span.badge');
+    $badge.append(list.length);
+    
+    $('#valider').on('click', function(){
+        $('#myTabs a[href="#profile"]').tab('show')
+    });
+    
+});
+
+function renderPanier(){
+
+    var templateListInfo = `<tr>
+                                    <td rowspan="2"><img class="i" src=":img:" alt=""></td>
+                                    <td colspan="3"><p class="text-capitalize">:name:</p></td>
+                                </tr>
+                                <tr>
+                                    <td>x 1</td>
+                                    <td>:price:  €</td>
+                                    <td><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></td>
+                                </tr>`;
+
+    var templatePanier = `<tr>
+                        <td><img class="ip" src=":img:" alt=""</td>
+                        <td>
+                            <dl>
+                            <dt>Description</dt>
+                            <dd>:description:</dd>
+                            </dl>
+                        </td>
+                        <td>x 1</td>
+                        <td><p>:precio: € sd sd</p></td>
+                        <td><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></td>
+                    </tr>`;
+
+    var $panier = $('#panier');
+    var $listInfo = $('#listInfo');
+
+
+    $(list).each(function (index, element){
+        console.log('index : ', index, ' elemt : ',element);
+        $.ajax(`http://localhost:3001/api/product/${element}`, {
+            success : function (data){
+                var article = templatePanier 
+                    .replace(':img:', data.product.picture)
+                    .replace(':description:', data.product.description)  
+                    .replace(':id:', data.product._id)
+                    .replace(':precio:', data.product.price)    
+                
+                var articleList = templateListInfo
+                    .replace(':img:', data.product.picture)
+                    .replace(':name:', data.product.name)
+                    .replace(':price:', data.product.price)
+
+                $listInfo.append(articleList)
+                $panier.append(article);         
+            }
+        });
+    });
 }
