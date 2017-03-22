@@ -26,17 +26,17 @@ function renderPanier(){
                                 </tr>`;
 
     var templatePanier = `<tr>
-                        <td><img class="ip" src=":img:" alt=""</td>
-                        <td>
-                            <dl>
-                            <dt>Description</dt>
-                            <dd>:description:</dd>
-                            </dl>
-                        </td>
-                        <td>x 1</td>
-                        <td><p>:precio: € sd sd</p></td>
-                        <td><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></td>
-                    </tr>`;
+                            <td><img class="ip" src=":img:" alt=""</td>
+                            <td>
+                                <dl>
+                                <dt>Description</dt>
+                                <dd>:description:</dd>
+                                </dl>
+                            </td>
+                            <td>x 1</td>
+                            <td><p>:precio: € sd sd</p></td>
+                            <td><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></td>
+                        </tr>`;
 
     var $panier = $('#panier');
     var $listInfo = $('#listInfo');
