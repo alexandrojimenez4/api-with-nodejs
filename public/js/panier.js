@@ -44,7 +44,7 @@ function renderPanier(){
 
     $(list).each(function (index, element){
         console.log('index : ', index, ' elemt : ',element);
-        $.ajax(`http://localhost:3001/api/product/${element}`, {
+        $.ajax(`https://pure-tundra-14882.herokuapp.com/api/product/${element}`, {
             success : function (data){
                 var article = templatePanier 
                     .replace(':img:', data.product.picture)

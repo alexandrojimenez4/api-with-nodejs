@@ -48,7 +48,7 @@ function renderArticle(category){
 					</div>`;
 
 	$articleContainer.empty();
-	$.ajax(`http://localhost:3001/api/product/${category}`,{
+	$.ajax(`https://pure-tundra-14882.herokuapp.com/api/product/${category}`,{
 		success: function(data){
 			$(data.products).each(function(index, product){
 				var article = thumbnail
@@ -86,7 +86,7 @@ function renderPanierInfo(){
 
     $(list).each(function (index, element){
         console.log('index : ', index, ' elemt : ',element);
-        $.ajax(`http://localhost:3001/api/product/${element}`, {
+        $.ajax(`https://pure-tundra-14882.herokuapp.com/api/product/${element}`, {
             success : function (data){
                 var articleList = templateListInfo
                     .replace(':img:', data.product.picture)
