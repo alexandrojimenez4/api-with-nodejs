@@ -1,5 +1,6 @@
 // 
 var list = new Array();
+var api = "http://localhost:3001";//https://pure-tundra-14882.herokuapp.com
 
 $().ready(function(){
 
@@ -8,15 +9,32 @@ $().ready(function(){
 		renderPanierInfo();
 	}
 
+	$('#myModal').modal({
+		show: true,
+		backdrop:'static'
+	})
+
 	$('[data-toggle="popover"]').popover()
 
 	$('#menu a[href="#homme"]').on('click', function(){
+		$( this ).parent().toggleClass('active');
+		$('#menu a[href="#femme"]').parent().removeClass('active');
+		$('#menu a[href="#enfant"]').parent().removeClass('active');
+		$('#menu a[href="index.html"]').parent().removeClass('active');
 		renderArticle('homme');
 	});
 	$('#menu a[href="#femme"]').on('click', function(){
+		$( this ).parent().toggleClass('active');
+		$('#menu a[href="#homme"]').parent().removeClass('active');
+		$('#menu a[href="#enfant"]').parent().removeClass('active');
+		$('#menu a[href="index.html"]').parent().removeClass('active');
 		renderArticle('femme');
 	});
 	$('#menu a[href="#enfant"]').on('click', function(){
+		$( this ).parent().toggleClass('active');
+		$('#menu a[href="#femme"]').parent().removeClass('active');
+		$('#menu a[href="#homme"]').parent().removeClass('active');
+		$('#menu a[href="index.html"]').parent().removeClass('active');
 		renderArticle('enfant');
 	});
 
@@ -25,45 +43,50 @@ $().ready(function(){
 function renderArticle(category){
 	var $articleContainer = $("#produits");
 
-	var thumbnail = `<div class="col-sm-6 col-md-4">
-					    <div class="thumbnail">
-					      <img src=":img:" alt=":nameAlt:">
+	var thumbnail = `
+					<div class="col-sm-6 col-md-4">
+						<div class="thumbnail">
+					      <img src=":img:" alt=":alt:">
 					      <div class="caption">
 					        <h3>:name:</h3>
-					        <p>:description:</p>
+					        <div class="dotdotdot">:description:</div>
 					        <div class="row">
 					        	<div class="col-md-8">
-					        		<a href="#" class="btn btn-default" role="button"><span class="glyphicon glyphicon-star-empty"></span></a>
-					        		<span class="badge">42</span>
+					        		<a href="#" class="btn btn-default" role="button" data-toggle="modal" data-target="#myModal"> Afficher produit</a>
 					        	</div>
 					        	<div class="col-md-4">
 					        		<h4 class="centrer">:price:  €</h4>
 					        	</div>
 					        </div>
-					        <p>
-					        	<button type="button" class="btn btn-primary btn-lg btn-block" onclick="ajouterPanier(':id:');">Ajouter au panier</button> 
-					        </p>
+					        <p><button type="submit" class="btn btn-primary btn-lg btn-block" onclick="ajouterPanier(':id:');">Ajouter au panier</button></p>
 					      </div>
 					    </div>
 					</div>`;
 
 	$articleContainer.empty();
-	$.ajax(`https://pure-tundra-14882.herokuapp.com/api/product/${category}`,{
+	$.ajax(`${api}/api/product/${category}`,{
 		success: function(data){
 			$(data.products).each(function(index, product){
 				var article = thumbnail
 					.replace(':name:', product.name)
-					.replace(':img:', product.picture)
+					.replace(':img:', product.picture)					
+					.replace(':alt:', product.name)
 					.replace(':price:', product.price)
 					.replace(':description:', product.description)
 					.replace(':id:', product._id)
-					.replace(':nameAlt:', product.name)
 								
 				var $article = $(article);
 				$articleContainer.append($article);		
 			});
 		}
 	});
+
+	setTimeout(function(){
+	  	$('div.dotdotdot').dotdotdot({
+			after: "a.readmore"
+		});
+	}, 1000);
+	
 }
 
 function renderPanierInfo(){
@@ -78,7 +101,7 @@ function renderPanierInfo(){
                             <tr>
                             	<td>x 1</td>
                                 <td>:price:  €</td>
-                                <td><a href="#" class="btn btn-default btn-xs" role="button"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a></td>
+                                <td><button class="btn btn-default btn-xs" onclick="deleteArticulo(':id:');"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button></td>
                             </tr>`;
 
     var $listInfo = $('#listInfo');
@@ -86,9 +109,10 @@ function renderPanierInfo(){
 
     $(list).each(function (index, element){
         console.log('index : ', index, ' elemt : ',element);
-        $.ajax(`https://pure-tundra-14882.herokuapp.com/api/product/${element}`, {
+        $.ajax(`${api}/api/product/${element}`, {
             success : function (data){
                 var articleList = templateListInfo
+                	.replace(':id:', index)
                     .replace(':img:', data.product.picture)
                     .replace(':name:', data.product.name)
                     .replace(':price:', data.product.price)
@@ -99,15 +123,45 @@ function renderPanierInfo(){
     });                           
 }
 
-function ajouterPanier(article){
-	list.push(article);
-	renderPanierInfo();
-	alert('Article ajouté avec success!');
+// Funciones para la lista de articulos en el carrito
+
+// Agregar
+function ajouterPanier(id){
 	
+	list.push(id);
+	renderPanierInfo();
+	//alert('Article ajouté avec success!');
+	
+	$('#alert').modal({
+		show: true
+	})
+
 	if(sessionStorage.listPanier){
 		sessionStorage.removeItem('listPanier');
 		sessionStorage['listPanier'] = JSON.stringify(list);
 	}else{
 		sessionStorage['listPanier'] = JSON.stringify(list);
 	}
+}
+// Eliminar
+function deleteArticulo(id){
+	list.splice(id,1);
+	console.log(id);
+	renderPanierInfo();
+	if(sessionStorage.listPanier){
+		sessionStorage.removeItem('listPanier');
+		sessionStorage['listPanier'] = JSON.stringify(list);
+	}else{
+		sessionStorage['listPanier'] = JSON.stringify(list);
+	}
+}
+
+
+
+// Objeto Article 
+
+function Article(id, qte, prix){
+	this.id = id;
+	this.qte = qte;
+	this.prix = prix;
 }

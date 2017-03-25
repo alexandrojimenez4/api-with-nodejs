@@ -1,4 +1,5 @@
 var list = JSON.parse(sessionStorage.listPanier);
+var api = "http://localhost:3001";
 
 $().ready(function () {
 
@@ -14,6 +15,16 @@ $().ready(function () {
 });
 
 function renderPanier(){
+
+    var infoTotal = `<dt>SOUS-TOTAL</dt>
+                    <dd>:total:  €</dd>
+                    <dt>TVA NORMALE (20%)</dt>
+                    <dd>5,58  €</dd>
+                    <dt>DONT TAXE</dt>
+                    <dd>5,58  €</dd>
+                    <hr>
+                    <dt>MONTANT TTC</dt>
+                    <dd><h4>:totalFinal:  €</h4></dd>`;
 
     var templateListInfo = `<tr>
                                     <td rowspan="2"><img class="i" src=":img:" alt=""></td>
@@ -44,7 +55,7 @@ function renderPanier(){
 
     $(list).each(function (index, element){
         console.log('index : ', index, ' elemt : ',element);
-        $.ajax(`https://pure-tundra-14882.herokuapp.com/api/product/${element}`, {
+        $.ajax(`${api}/api/product/${element}`, {
             success : function (data){
                 var article = templatePanier 
                     .replace(':img:', data.product.picture)
