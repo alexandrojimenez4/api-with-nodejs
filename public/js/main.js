@@ -1,6 +1,6 @@
 // 
 var list = new Array();
-var api = "https://pure-tundra-14882.herokuapp.com";
+var api = "http://localhost:3001";//"https://pure-tundra-14882.herokuapp.com";
 var productos = new Array();
 
 $().ready(function(){
