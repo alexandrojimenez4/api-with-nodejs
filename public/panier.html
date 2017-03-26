@@ -22,8 +22,8 @@
 
 <body>
 	
-	<nav class="navbar navbar-default navbar-fixed-top cafe">
-      <div class="container-fluid">
+	<nav class="navbar navbar-default navbar-fixed-top sombra sin-border">
+      <div class="container-fluid amarillo">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
@@ -52,7 +52,7 @@
           <ul class="nav navbar-nav navbar-right">
             <li><a href="#">Mon compte</a></li>
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Mon panier <span class="badge"></span> <span class="caret"></span></a>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Mon panier <span class="badge" id="badgePanier"></span> <span class="caret"></span></a>
               <ul class="dropdown-menu">
                 <li>
                     <div class="row">
@@ -64,7 +64,14 @@
                     </div>
                 </li>
                 <li role="separator" class="divider"></li>
-                <li><a class="text-center" href="panier.html">Affichier mon panier</a></li>
+                <!-- <li><a class="text-center" href="panier.html">Affichier mon panier</a></li> -->
+                <li>
+                  <div class="row">
+                    <div class="col-md-10 col-md-offset-1 text-center">
+                      <a href="panier.html" class="btn btn-warning cuadrado btn-primary btn-lg btn-block">Affichier mon panier</a>
+                    </div>
+                  </div>
+                </li>
               </ul>
             </li>
           </ul>
@@ -94,7 +101,7 @@
                 <div class="row">
                     <div class="col-md-8">
                         <table class="table" id="panier">
-                        <tr>
+                        <tr id="header-table">
                             <th>Produit</th>
                             <th>Prix</th>
                             <th>Qté</th>
@@ -105,33 +112,30 @@
                     </div>
                     <div class="col-md-4">
                         <div class="row">
-                            <div class="panel panel-default">
-                              <div class="panel-body">
-                                <form class="form-inline">
-                                    <div class="form-group">
-                                    <label for="exampleInputEmail2">CODES DE REDUCTION</label>
-                                    <input type="email" class="form-control" id="exampleInputEmail2">
-                                  </div>
-                                  <button type="submit" class="btn btn-default">APPLIQUER</button>
-                                </form>
+                            <div class="panel panel-default cuadrado">
+                              <div class="panel-body negro text-white">
+                                <div class="form-group">
+                                  <label for="exampleInputEmail2">CODES DE REDUCTION</label>
+                                  <input type="email" class="form-control cuadrado" id="exampleInputEmail2" placeholder="5a07451a5fs9">
+                                </div>
                               </div>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="panel panel-default">
-                              <div class="panel-body">
+                            <div class="panel panel-default cuadrado">
+                              <div class="panel-body negro text-white">
                                 <dl class="dl-horizontal text-right">
                                   <dt>SOUS-TOTAL</dt>
-                                  <dd>33,45  €</dd>
+                                  <dd class="sous-total">0,00  €</dd>
                                   <dt>TVA NORMALE (20%)</dt>
-                                  <dd>5,58  €</dd>
+                                  <dd class="tva">0,00  €</dd>
                                   <dt>DONT TAXE</dt>
-                                  <dd>5,58  €</dd>
+                                  <dd class="taxe">0,00  €</dd>
                                   <hr>
                                   <dt>MONTANT TTC</dt>
-                                  <dd><h4>344,45  €</h4></dd>
+                                  <dd><h4 class="ttc">0,00  €</h4></dd>
                                   <hr>
-                                  <button type="button" class="btn btn-danger btn-lg btn-block" id="valider">VALIDER MON PANIER</button>
+                                  <button type="button" class="btn btn-warning btn-lg btn-block cuadrado" id="valider">VALIDER MON PANIER</button>
                                 </dl>
                               </div>
                             </div>
@@ -149,7 +153,7 @@
                 </div>
                 <div class="row">
                     <div class="col-md-8">
-                        <form class="">
+                        <form id="formConfirmation">
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
@@ -170,12 +174,7 @@
                                         <label for="exampleInputEmail1">Email address</label>
                                         <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
                                     </div>
-                                    <div class="checkbox">
-                                        <label>
-                                          <input type="checkbox"> Check me out
-                                        </label>
-                                    </div>
-                                    <button type="submit" class="btn btn-danger">CONFIRMATION</button>
+                                    <button type="submit" class="btn btn-warning btn-block cuadrado">CONFIRMATION</button>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
@@ -188,17 +187,17 @@
                     </div>
                     <div class="col-md-4">
                         <div class="panel panel-default">
-                            <div class="panel-body">
+                            <div class="panel-body negro text-white">
                                 <dl class="dl-horizontal text-right">
                                     <dt>SOUS-TOTAL</dt>
-                                    <dd>33,45  €</dd>
+                                    <dd class="sous-total">0,0  €</dd>
                                     <dt>TVA NORMALE (20%)</dt>
-                                    <dd>5,58  €</dd>
+                                    <dd class="tva">0,00  €</dd>
                                     <dt>DONT TAXE</dt>
-                                    <dd>5,58  €</dd>
+                                    <dd class="taxe">0,00  €</dd>
                                     <hr>
                                     <dt>MONTANT TTC</dt>
-                                    <dd><h4>344,45  €</h4></dd>
+                                    <dd><h4 class="ttc">0,00  €</h4></dd>
                                 </dl>
                             </div>
                         </div>
@@ -207,10 +206,11 @@
             </div>
             <div role="tabpanel" class="tab-pane" id="messages">
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-6 col-md-offset-3">
                         <div class="page-header">
                           <h3>Confirmation</h3>
                         </div>
+                        <p class="lead">Mathilde Bohman, <br>Merci pour votre commande. Nous l'avons recue et traiterons dans les plus brefs delais. <br>Votre numero de commande est le 7458626.</p>
                     </div>
                 </div>
                 <div class="row">
@@ -226,7 +226,7 @@
     <script  src="https://code.jquery.com/jquery-3.2.1.js"  integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="  crossorigin="anonymous"></script>
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-
+    
     <script src="js/panier.js"></script>
 </body>
 </html>

@@ -2,6 +2,53 @@ body{
 	padding-top: 90px;
 	padding-bottom: 110px;
 }
+/********* Colores y utilidades *******/
+.sombra{
+  -webkit-box-shadow: 0px 10px 20px -3px rgba(0,0,0,0.47);
+}
+
+.sin-border{
+  border: 0px;
+}
+
+.cuadrado{
+  border-radius: 0px;
+}
+
+.text-white{
+  color: white;
+}
+
+.green{
+  background-color: #2ecc71;
+}
+
+.amarillo{
+  background-color: #F7CA18;
+}
+
+.negro{
+  background-color: #34495e;
+}
+/*************************/
+
+.modal-centrado{
+  margin-top: 200px;
+}
+
+select.qte-size{
+  margin-top: 20px;
+  width: 60px;
+}
+
+p.prix-size{
+  margin-top: 25px;
+  width: 60px;
+}
+
+.btn-table-delete{
+  margin-top: 25px;
+}
 
 div.dotdotdot{
   width: 100%;
@@ -9,12 +56,6 @@ div.dotdotdot{
   margin-bottom: 10px;
 }
 
-.cafe{
-	border-radius: 0px;
-	border: 0px;
-	-webkit-box-shadow: 0px 10px 20px -3px rgba(0,0,0,0.47);
-	background-color: #ffff;
-}
 
 div.jumbotron{
   color: white;
@@ -39,8 +80,7 @@ div.jumbotron{
 	width: 350px;
 	margin: 8px;
 }
-.listPanier tr{
-}
+
 .border-bottom{
 	border-bottom: 2px solid #553663;
 }

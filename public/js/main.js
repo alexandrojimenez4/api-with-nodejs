@@ -1,6 +1,6 @@
 // 
 var list = new Array();
-var api = "http://localhost:3001";//https://pure-tundra-14882.herokuapp.com
+var api = "https://pure-tundra-14882.herokuapp.com";//"http://localhost:3001";
 
 $().ready(function(){
 
@@ -9,10 +9,9 @@ $().ready(function(){
 		renderPanierInfo();
 	}
 
-	$('#myModal').modal({
-		show: true,
-		backdrop:'static'
-	})
+	// $('#myModal').modal({
+	// 	show: true,
+	// })
 
 	$('[data-toggle="popover"]').popover()
 
@@ -45,20 +44,20 @@ function renderArticle(category){
 
 	var thumbnail = `
 					<div class="col-sm-6 col-md-4">
-						<div class="thumbnail">
+						<div class="thumbnail cuadrado">
 					      <img src=":img:" alt=":alt:">
 					      <div class="caption">
 					        <h3>:name:</h3>
 					        <div class="dotdotdot">:description:</div>
 					        <div class="row">
 					        	<div class="col-md-8">
-					        		<a href="#" class="btn btn-default" role="button" data-toggle="modal" data-target="#myModal"> Afficher produit</a>
+					        		<a href="#" class="btn btn-default cuadrado" role="button" data-toggle="modal" data-target="#myModal"> Afficher produit</a>
 					        	</div>
 					        	<div class="col-md-4">
 					        		<h4 class="centrer">:price:  €</h4>
 					        	</div>
 					        </div>
-					        <p><button type="submit" class="btn btn-primary btn-lg btn-block" onclick="ajouterPanier(':id:');">Ajouter au panier</button></p>
+					        <p><button type="submit" class="btn btn-primary btn-lg btn-block cuadrado" onclick="ajouterPanier(':id:');">Ajouter au panier</button></p>
 					      </div>
 					    </div>
 					</div>`;
@@ -86,11 +85,12 @@ function renderArticle(category){
 			after: "a.readmore"
 		});
 	}, 1000);
-	
 }
 
 function renderPanierInfo(){
+
 	var $badge = $('span#badgePanier');
+
 	$badge.empty();
     $badge.append(list.length);
 
@@ -128,19 +128,21 @@ function renderPanierInfo(){
 // Agregar
 function ajouterPanier(id){
 	
-	list.push(id);
-	renderPanierInfo();
-	//alert('Article ajouté avec success!');
-	
-	$('#alert').modal({
-		show: true
-	})
+	if(list.indexOf(id) == -1){
+		list.push(id);
+		renderPanierInfo();
+		//alert('Article ajouté avec success!');
+		
+		$('#alert').modal({
+			show: true
+		})
 
-	if(sessionStorage.listPanier){
-		sessionStorage.removeItem('listPanier');
-		sessionStorage['listPanier'] = JSON.stringify(list);
-	}else{
-		sessionStorage['listPanier'] = JSON.stringify(list);
+		if(sessionStorage.listPanier){
+			sessionStorage.removeItem('listPanier');
+			sessionStorage['listPanier'] = JSON.stringify(list);
+		}else{
+			sessionStorage['listPanier'] = JSON.stringify(list);
+		}
 	}
 }
 // Eliminar
@@ -156,12 +158,6 @@ function deleteArticulo(id){
 	}
 }
 
-
-
-// Objeto Article 
-
-function Article(id, qte, prix){
-	this.id = id;
-	this.qte = qte;
-	this.prix = prix;
+function moinCher(){
+	
 }
