@@ -1,5 +1,5 @@
 var list = JSON.parse(sessionStorage.listPanier);
-var api = "http://localhost:3001";//"https://pure-tundra-14882.herokuapp.com";
+var api = "https://pure-tundra-14882.herokuapp.com";//"http://localhost:3001";
 
 $().ready(function () {
 

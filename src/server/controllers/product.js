@@ -49,6 +49,22 @@ function getProductsEnfants(req, res){
 	})
 }
 
+function getMoinCher(req, res){
+	Product.find({}).limit(3).sort({ price: 1 }).exec((err, products) => {
+		if (err) return res.status(500).send({ message: `Error al realizar la peticion: ${err}`})
+		if (!products) return res.status(404).send({message: `No existen productos`})
+
+		res.send(200, { products })
+	});
+
+	// Product.find({ limit:3 }, (err, products) => {
+	// 	if (err) return res.status(500).send({ message: `Error al realizar la peticion: ${err}`})
+	// 	if (!products) return res.status(404).send({message: `No existen productos`})
+
+	// 	res.send(200, { products })
+	// })
+}
+
 function saveProduct(req, res){
 	console.log('POST /api/product')
 	console.log(req.body)
@@ -97,6 +113,7 @@ module.exports = {
 	getProductsHommes,
 	getProductsFemmes,
 	getProductsEnfants,
+	getMoinCher,
 	saveProduct,
 	updateProduct,
 	deleteProduct

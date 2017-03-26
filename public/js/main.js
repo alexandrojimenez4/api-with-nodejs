@@ -1,6 +1,6 @@
 // 
 var list = new Array();
-var api = "http://localhost:3001";//"https://pure-tundra-14882.herokuapp.com";
+var api = "https://pure-tundra-14882.herokuapp.com";
 
 $().ready(function(){
 
@@ -8,6 +8,8 @@ $().ready(function(){
 		list = JSON.parse(sessionStorage.listPanier);
 		renderPanierInfo();
 	}
+
+	renderMoinCher();
 
 	// $('#myModal').modal({
 	// 	show: true,
@@ -42,6 +44,10 @@ $().ready(function(){
 function renderArticle(category){
 	var $articleContainer = $("#produits");
 
+	var titleHeader = `<div class="page-header">
+						  <h2>Vélos ${category}</h2>
+						</div>`;
+
 	var thumbnail = `
 					<div class="col-sm-6 col-md-4">
 						<div class="thumbnail cuadrado">
@@ -63,6 +69,7 @@ function renderArticle(category){
 					</div>`;
 
 	$articleContainer.empty();
+	$articleContainer.append(titleHeader);
 	$.ajax(`${api}/api/product/${category}`,{
 		success: function(data){
 			$(data.products).each(function(index, product){
@@ -158,6 +165,54 @@ function deleteArticulo(id){
 	}
 }
 
-function moinCher(){
-	
+function renderMoinCher(){
+	var $articleContainer = $("#produits");
+
+	var titleHeader = `<div class="page-header">
+						  <h2>Les moins chers</h2>
+						</div>`;
+
+	var thumbnail = `<div class="col-sm-6 col-md-4">
+						<div class="thumbnail cuadrado">
+					      <img src=":img:" alt=":alt:">
+					      <div class="caption">
+					        <h3>:name:</h3>
+					        <div class="dotdotdot">:description:</div>
+					        <div class="row">
+					        	<div class="col-md-8">
+					        		<a href="#" class="btn btn-default cuadrado" role="button" data-toggle="modal" data-target="#myModal"> Afficher produit</a>
+					        	</div>
+					        	<div class="col-md-4">
+					        		<h4 class="centrer">:price:  €</h4>
+					        	</div>
+					        </div>
+					        <p><button type="submit" class="btn btn-primary btn-lg btn-block cuadrado" onclick="ajouterPanier(':id:');">Ajouter au panier</button></p>
+					      </div>
+					    </div>
+					</div>`;
+
+	$articleContainer.empty();
+	$articleContainer.append(titleHeader);
+	$.ajax(`${api}/api/product/moinCher`,{
+		success: function(data){
+			$(data.products).each(function(index, product){
+				var article = thumbnail
+					.replace(':name:', product.name)
+					.replace(':img:', product.picture)					
+					.replace(':alt:', product.name)
+					.replace(':price:', product.price)
+					.replace(':description:', product.description)
+					.replace(':id:', product._id)
+								
+				var $article = $(article);
+				$articleContainer.append($article);		
+			});
+		}
+	});
+
+	setTimeout(function(){
+	  	$('div.dotdotdot').dotdotdot({
+			after: "a.readmore"
+		});
+	}, 1000);
 }
