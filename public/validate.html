@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Prueba - validacion de formularios</title>
+    <script  src="https://code.jquery.com/jquery-3.2.1.js"  integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="  crossorigin="anonymous"></script>
+    <script type = "text/javascript" src = "js/jquery.validate.js"> </script>     
+    <script type = "text/javascript">
+    $(document).ready(function(){
+      $('#v_codigo').focus();
+      $("#form1").validate();
+      $("#b_reset").click(function(){location.reload();});
+    });
+    </script>
+    <style>
+     div      {width:500px;height:300px;background-color:#00BFFF;margin:5px; padding:5px; 
+               border-style:groove; border-width:3px; font-size:18px;overflow:auto;}
+     .cRotulos      {border-style:none;border-color:green;width:170px;font-size:19px}
+     .cRotulos:hover {background-color:#A9D0F5;}
+     .ct            {border-style:inset;border-color:green;border-width:1px;}
+     .ct:hover      {border-color:red;border-width:2px;}   
+     .cb            {width: 100px; height:30px;}
+     .cbr           {width: 598px; height:30px;}  
+     span           {margin:2px;color:blue; font-weight:bold;} 
+     td   {height:30px;}          
+    </style>
+   </head>
+  <body>
+    <center>
+      <form name="form1" id="form1">
+        <table bgcolor="#A9F5F2" border="1">
+          <tr>
+            <td class="cRotulos"><span>Codigo</span></td>
+            <td style="width: 530px;">
+              <input id="v_codigo" class="ct required digits" size="4" style="text-align:right" type="text" title="Introduzca código (números)."/>
+            </td>
+          </tr>
+          <tr>
+            <td class="cRotulos"><span>Numeros</span></td>
+            <td><input id="v_numeros" class="ct number required" size="10" type="text"/></td>
+          </tr>
+          <tr>
+            <td class="cRotulos"><span>Fecha</span></td>
+            <td><input id="v_fecha" class="ct date required" size="10" type="text"/></td>
+          </tr>
+          <tr>
+            <td class="cRotulos"><span>URL</span></td>
+            <td><input id="v_url" class="ct url required" size="40" type="text"/></td>
+          </tr>
+          <tr>
+            <td class="cRotulos"><span>Email</span></td>
+            <td><input id="v_email" class="ct email required" size="40" type="text"/></td>
+          </tr>
+          <tr>
+            <td class="cRotulos"><span>Tarjeta de credito</span></td>
+            <td><input id="v_tarjeta" class="ct creditcard" size="40" type="text"/></td>
+          </tr>
+          <tr>
+            <td colspan=2>
+              <input id="b_submit" class="cb" type="submit" value="submit"/>
+              <input id="b_reset" class="cbr" type="button" value="reset"/>
+            </td>
+          </tr>
+        </table>
+      </form>
+    </center>
+  </body>
+</html>

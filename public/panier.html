@@ -157,29 +157,33 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">Nom</label>
-                                        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Dupont">
+                                        <label for="inputNom">Nom</label>
+                                        <input type="text" class="form-control required" id="inputNom" placeholder="Dupont">
+                                        <span id="helpBlockNom" class="help-block"></span>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="exampleInputPassword1">Prenom</label>
-                                        <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Quentin">
+                                        <label for="inputPrenom">Prenom</label>
+                                        <input type="text" class="form-control required" id="inputPrenom" placeholder="Quentin">
+                                        <span id="helpBlockPrenom" class="help-block"></span>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">Email address</label>
-                                        <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+                                        <label for="inputEmail">Email address</label>
+                                        <input type="email" class="form-control required email" id="inputEmail" placeholder="Email">
+                                        <span id="helpBlockEmail" class="help-block"></span>
                                     </div>
                                     <button type="submit" class="btn btn-warning btn-block cuadrado">CONFIRMATION</button>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="adresse">Email address</label>
-                                        <textarea class="form-control" rows="3" id="adresse" placeholder="Résidence du Saulcy"></textarea>
+                                        <label for="inputAdresse">Address</label>
+                                        <textarea class="form-control required" rows="3" id="inputAdresse" placeholder="Résidence du Saulcy"></textarea>
+                                        <span id="helpBlockAdress" class="help-block"></span>
                                     </div>
                                 </div>
                             </div>
@@ -210,7 +214,7 @@
                         <div class="page-header">
                           <h3>Confirmation</h3>
                         </div>
-                        <p class="lead">Mathilde Bohman, <br>Merci pour votre commande. Nous l'avons recue et traiterons dans les plus brefs delais. <br>Votre numero de commande est le 7458626.</p>
+                        <p id="messageConfi" class="lead"></p>
                     </div>
                 </div>
                 <div class="row">
@@ -226,7 +230,7 @@
     <script  src="https://code.jquery.com/jquery-3.2.1.js"  integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="  crossorigin="anonymous"></script>
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-    
+    <script src="js/jquery.validate.js"></script>
     <script src="js/panier.js"></script>
 </body>
 </html>

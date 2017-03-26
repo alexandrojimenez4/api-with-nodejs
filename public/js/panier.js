@@ -1,20 +1,76 @@
 var list = JSON.parse(sessionStorage.listPanier);
-var api = "https://pure-tundra-14882.herokuapp.com";//"http://localhost:3001";
+var api = "http://localhost:3001";//"https://pure-tundra-14882.herokuapp.com";
 
 $().ready(function () {
 
     renderPanier();
     renderPanierInfo();
     
+    // Passer au formulaire
     $('#valider').on('click', function(){
         $('#myTabs a[href="#profile"]').tab('show')
     });
 
-    $('#formConfirmation').submit(function(event){
+    // Valider le formulaire
+    $("#formConfirmation").submit(function(event){
         event.preventDefault();
-        $('#myTabs a[href="#messages"]').tab('show')
-        
-    });    
+        valide = true;
+        if($("#inputNom").val() == ""){
+            $("#inputNom").next(".help-block").fadeIn().text("Veuillez entrer votre nom");
+                valide =false;
+        }else if(!$("#inputNom").val().match(/^[a-z]+$/i)){
+            $("#inputNom").next(".help-block").fadeIn().text("Veuillez entrer votre nom valide");
+            valide =false;
+        }else{
+            $("#inputNom").next(".help-block").fadeOut();
+        }
+                      
+        if($("#inputPrenom").val() == ""){
+            $("#inputPrenom").next(".help-block").fadeIn().text("Veuillez entrer votre nom");
+            valide =false;
+        }else if(!$("#inputPrenom").val().match(/^[a-z]+$/i)){
+            $("#inputPrenom").next(".help-block").fadeIn().text("Veuillez entrer votre nom valide");
+            valide =false;
+        }else{
+            $("#inputPrenom").next(".help-block").fadeOut();
+        }
+                
+        if($("#inputEmail").val() == ""){
+            $("#inputEmail").next(".help-block").fadeIn().text("Veuillez entrer votre emal");
+            valide =false;
+        }else if(!$("#inputEmail").val().match('^[0-9a-z._-]+@{1}[0-9a-z.-]{2,}[.]{1}[a-z]{2,5}$','i')){
+            $("#inputEmail").next(".help-block").fadeIn().text("Veuillez entrer votre email valide");
+            valide =false;
+        }
+        else{
+            $("#inputEmail").next(".help-block").fadeOut();
+        }
+
+        if($("#inputAdresse").val() == ""){
+            $("#inputAdresse").next(".help-block").fadeIn().text("Veuillez entrer votre adresse");
+            valide =false;
+        }else if($("#inputAdresse").val().length < 20){
+            $("#inputAdresse").next(".help-block").fadeIn().text("Veuillez entrer au moin 20 caractères");
+            valide =false;
+        }else{
+            $("#inputAdresse").next(".help-block").fadeOut();
+        }
+                                  
+        if(valide==true){
+            var messageConfirmation = `${$("#inputNom").val()} ${$("#inputPrenom").val()}, 
+            <br>Merci pour votre commande. 
+            Nous l'avons recue et traiterons dans les plus brefs delais. 
+            <br>Votre numero de commande est le 7458626.`;
+            console.log(messageConfirmation);   
+            $('#messageConfi').append(messageConfirmation);
+
+            $('#myTabs a[href="#messages"]').tab('show')
+            sessionStorage.removeItem('listPanier');
+            list.splice(0,list.length)
+            sessionStorage['listPanier'] = JSON.stringify(list);
+            renderPanierInfo();
+        }  
+    }); 
     
 });
 
