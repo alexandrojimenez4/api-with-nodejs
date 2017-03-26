@@ -1,6 +1,7 @@
 // 
 var list = new Array();
 var api = "https://pure-tundra-14882.herokuapp.com";
+var productos = new Array();
 
 $().ready(function(){
 
@@ -22,34 +23,104 @@ $().ready(function(){
 		$('#menu a[href="#femme"]').parent().removeClass('active');
 		$('#menu a[href="#enfant"]').parent().removeClass('active');
 		$('#menu a[href="index.html"]').parent().removeClass('active');
-		renderArticle('homme');
+		renderArticle(0,2,1,'homme');
 	});
 	$('#menu a[href="#femme"]').on('click', function(){
 		$( this ).parent().toggleClass('active');
 		$('#menu a[href="#homme"]').parent().removeClass('active');
 		$('#menu a[href="#enfant"]').parent().removeClass('active');
 		$('#menu a[href="index.html"]').parent().removeClass('active');
-		renderArticle('femme');
+		renderArticle(0,2,1,'femme');
 	});
 	$('#menu a[href="#enfant"]').on('click', function(){
 		$( this ).parent().toggleClass('active');
 		$('#menu a[href="#femme"]').parent().removeClass('active');
 		$('#menu a[href="#homme"]').parent().removeClass('active');
 		$('#menu a[href="index.html"]').parent().removeClass('active');
-		renderArticle('enfant');
+		renderArticle(0,2,1,'enfant');
 	});
 
 });
 
-function renderArticle(category){
+// Peticion ajax para obtener productos por categoria y relleno el array de productos
+// function arrayProductosRellenar(category){
+// 	// if(productos.length != 0){
+// 	// 	productos.splice(0, productos.length);
+// 	// }
+
+// 	var thumbnail = `<div class="col-sm-6 col-md-4">
+// 						<div class="thumbnail cuadrado">
+// 					      <img src=":img:" alt=":alt:">
+// 					      <div class="caption">
+// 					        <h3>:name:</h3>
+// 					        <div class="dotdotdot">:description:</div>
+// 					        <div class="row">
+// 					        	<div class="col-md-8">
+// 					        		<a href="#" class="btn btn-default cuadrado" role="button" data-toggle="modal" data-target="#myModal"> Afficher produit</a>
+// 					        	</div>
+// 					        	<div class="col-md-4">
+// 					        		<h4 class="centrer">:price:  €</h4>
+// 					        	</div>
+// 					        </div>
+// 					        <p><button type="submit" class="btn btn-primary btn-lg btn-block cuadrado" onclick="ajouterPanier(':id:');">Ajouter au panier</button></p>
+// 					      </div>
+// 					    </div>
+// 					</div>`;
+// 	console.log(category);
+// 	$.ajax(`${api}/api/product/${category}`,{
+// 		success: function(data){
+// 			$(data.products).each(function(index, product){
+// 				var article = thumbnail
+// 					.replace(':name:', product.name)
+// 					.replace(':img:', product.picture)					
+// 					.replace(':alt:', product.name)
+// 					.replace(':price:', product.price)
+// 					.replace(':description:', product.description)
+// 					.replace(':id:', product._id)
+						
+// 				var $article = $(article);
+// 			});
+// 		}
+// 	});
+// }
+
+
+function renderArticle(index, puntero, activePagination, category){
+
+	// Objetos del DOM 
 	var $articleContainer = $("#produits");
+	var $pagination = $('#pagination');
 
-	var titleHeader = `<div class="page-header">
-						  <h2>Vélos ${category}</h2>
-						</div>`;
+	// Vaciar el div de los productos
+	$articleContainer.empty();
 
-	var thumbnail = `
-					<div class="col-sm-6 col-md-4">
+	// Variables para crear nuevos objetos
+	var titleHeader = $('#headerCategory');
+	titleHeader.empty();
+	titleHeader.append(category);
+
+	var contentPagination = `<li class=":active1:"><a href="#" onclick="renderArticle(0,2,1,'${category}')">1</a></li>
+							  <li class=":active2:"><a href="#" onclick="renderArticle(3,5,2,'${category}')">2</a></li>
+							  <li class=":active3:"><a href="#" onclick="renderArticle(6,8,3,'${category}')">3</a></li>
+							  <li class=":active4"><a href="#" onclick="renderArticle(9,9,4,'${category}')">4</a></li>`;
+	
+	$pagination.empty();
+	if(activePagination == 1){
+		var auxP = contentPagination.replace(':active1:', 'active')
+		$pagination.append(auxP);
+	}else if(activePagination == 2) {
+		var auxP = contentPagination.replace(':active2:', 'active')
+		$pagination.append(auxP);
+
+	}else if(activePagination == 3) {
+		var auxP = contentPagination.replace(':active3:', 'active')
+		$pagination.append(auxP);
+	}else if(activePagination == 4) {
+		var auxP = contentPagination.replace(':active4:', 'active')
+		$pagination.append(auxP);
+	}
+
+	var thumbnail = `<div class="col-sm-6 col-md-4">
 						<div class="thumbnail cuadrado">
 					      <img src=":img:" alt=":alt:">
 					      <div class="caption">
@@ -67,26 +138,26 @@ function renderArticle(category){
 					      </div>
 					    </div>
 					</div>`;
-
-	$articleContainer.empty();
-	$articleContainer.append(titleHeader);
+	console.log(category);
 	$.ajax(`${api}/api/product/${category}`,{
 		success: function(data){
-			$(data.products).each(function(index, product){
-				var article = thumbnail
-					.replace(':name:', product.name)
-					.replace(':img:', product.picture)					
-					.replace(':alt:', product.name)
-					.replace(':price:', product.price)
-					.replace(':description:', product.description)
-					.replace(':id:', product._id)
-								
-				var $article = $(article);
-				$articleContainer.append($article);		
+			$(data.products).each(function(i, product){
+				
+				if(i >= index && i<= puntero ){
+					var article = thumbnail
+						.replace(':name:', product.name)
+						.replace(':img:', product.picture)					
+						.replace(':alt:', product.name)
+						.replace(':price:', product.price)
+						.replace(':description:', product.description)
+						.replace(':id:', product._id)
+							
+					var $article = $(article);
+					$articleContainer.append($article);
+				}
 			});
 		}
 	});
-
 	setTimeout(function(){
 	  	$('div.dotdotdot').dotdotdot({
 			after: "a.readmore"
@@ -151,6 +222,7 @@ function ajouterPanier(id){
 			sessionStorage['listPanier'] = JSON.stringify(list);
 		}
 	}
+	console.log(list);
 }
 // Eliminar
 function deleteArticulo(id){
@@ -168,9 +240,9 @@ function deleteArticulo(id){
 function renderMoinCher(){
 	var $articleContainer = $("#produits");
 
-	var titleHeader = `<div class="page-header">
-						  <h2>Les moins chers</h2>
-						</div>`;
+	var titleHeader = $('#headerCategory');
+	titleHeader.empty();
+	titleHeader.append('Les moin chers');
 
 	var thumbnail = `<div class="col-sm-6 col-md-4">
 						<div class="thumbnail cuadrado">

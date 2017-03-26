@@ -1,5 +1,6 @@
 var list = JSON.parse(sessionStorage.listPanier);
-var api = "https://pure-tundra-14882.herokuapp.com";//"http://localhost:3001";
+var api = "https://pure-tundra-14882.herokuapp.com";
+var TOTAL = 0.0;
 
 $().ready(function () {
 
@@ -8,7 +9,9 @@ $().ready(function () {
     
     // Passer au formulaire
     $('#valider').on('click', function(){
-        $('#myTabs a[href="#profile"]').tab('show')
+        if(list.length != 0){
+            $('#myTabs a[href="#profile"]').tab('show')
+        }
     });
 
     // Valider le formulaire
@@ -79,6 +82,10 @@ function deleteArticulo(id){
     console.log(id);
     renderPanierInfo();
     renderPanier();
+    if (list.length == 0) {
+        TOTAL = 0.00;
+        renderInfo(TOTAL);
+    }
     if(sessionStorage.listPanier){
         sessionStorage.removeItem('listPanier');
         sessionStorage['listPanier'] = JSON.stringify(list);
@@ -135,17 +142,17 @@ function renderPanier(){
                             </td>
                             <td>
                                 <select class="form-control cuadrado qte-size">
-                                  <option value="1">1</option>
-                                  <option value="2">2</option>
-                                  <option value="3">3</option>
-                                  <option value="4">4</option>
-                                  <option value="5">5</option>
+                                  <option value=":x1:">1</option>
+                                  <option value=":x2:">2</option>
+                                  <option value=":x3:">3</option>
+                                  <option value=":x4:">4</option>
+                                  <option value=":x5:">5</option>
                                 </select>
                             </td>
                             <td><p class="prix-size">:precio: €</p></td>
                             <td><button class="btn btn-default btn-xs btn-table-delete" onclick="deleteArticulo(':id:');"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button></td>
                         </tr>`;
-    var subTotal = 0;
+    
 
     var $panier = $('#panier');
     $('#header-table').siblings('tr').remove();
@@ -158,11 +165,11 @@ function renderPanier(){
                     .replace(':img:', data.product.picture)
                     .replace(':description:', data.product.description)  
                     .replace(':id:', data.product._id)
-                    .replace(':precio:', data.product.price) 
+                    .replace(':precio:', data.product.price)
 
-                subTotal = subTotal + parseFloat(data.product.price);
+                TOTAL = TOTAL + parseFloat(data.product.price);
                 console.log(data.product.price);
-                renderInfo(subTotal);
+                renderInfo(TOTAL);
                 $panier.append(article);         
             }
         });
