@@ -12,10 +12,6 @@ $().ready(function(){
 
 	renderMoinCher();
 
-	// $('#myModal').modal({
-	// 	show: true,
-	// })
-
 	$('[data-toggle="popover"]').popover()
 
 	$('#menu a[href="#homme"]').on('click', function(){
@@ -41,49 +37,6 @@ $().ready(function(){
 	});
 
 });
-
-// Peticion ajax para obtener productos por categoria y relleno el array de productos
-// function arrayProductosRellenar(category){
-// 	// if(productos.length != 0){
-// 	// 	productos.splice(0, productos.length);
-// 	// }
-
-// 	var thumbnail = `<div class="col-sm-6 col-md-4">
-// 						<div class="thumbnail cuadrado">
-// 					      <img src=":img:" alt=":alt:">
-// 					      <div class="caption">
-// 					        <h3>:name:</h3>
-// 					        <div class="dotdotdot">:description:</div>
-// 					        <div class="row">
-// 					        	<div class="col-md-8">
-// 					        		<a href="#" class="btn btn-default cuadrado" role="button" data-toggle="modal" data-target="#myModal"> Afficher produit</a>
-// 					        	</div>
-// 					        	<div class="col-md-4">
-// 					        		<h4 class="centrer">:price:  €</h4>
-// 					        	</div>
-// 					        </div>
-// 					        <p><button type="submit" class="btn btn-primary btn-lg btn-block cuadrado" onclick="ajouterPanier(':id:');">Ajouter au panier</button></p>
-// 					      </div>
-// 					    </div>
-// 					</div>`;
-// 	console.log(category);
-// 	$.ajax(`${api}/api/product/${category}`,{
-// 		success: function(data){
-// 			$(data.products).each(function(index, product){
-// 				var article = thumbnail
-// 					.replace(':name:', product.name)
-// 					.replace(':img:', product.picture)					
-// 					.replace(':alt:', product.name)
-// 					.replace(':price:', product.price)
-// 					.replace(':description:', product.description)
-// 					.replace(':id:', product._id)
-						
-// 				var $article = $(article);
-// 			});
-// 		}
-// 	});
-// }
-
 
 function renderArticle(index, puntero, activePagination, category){
 
@@ -128,7 +81,7 @@ function renderArticle(index, puntero, activePagination, category){
 					        <div class="dotdotdot">:description:</div>
 					        <div class="row">
 					        	<div class="col-md-8">
-					        		<a href="#" class="btn btn-default cuadrado" role="button" data-toggle="modal" data-target="#myModal"> Afficher produit</a>
+					        		<a href="#" class="btn btn-default cuadrado" role="button" onclick="afficherModal(':idModal:');"> Afficher produit</a>
 					        	</div>
 					        	<div class="col-md-4">
 					        		<h4 class="centrer">:price:  €</h4>
@@ -151,6 +104,7 @@ function renderArticle(index, puntero, activePagination, category){
 						.replace(':price:', product.price)
 						.replace(':description:', product.description)
 						.replace(':id:', product._id)
+						.replace(':idModal:', product._id)
 							
 					var $article = $(article);
 					$articleContainer.append($article);
@@ -252,7 +206,7 @@ function renderMoinCher(){
 					        <div class="dotdotdot">:description:</div>
 					        <div class="row">
 					        	<div class="col-md-8">
-					        		<a href="#" class="btn btn-default cuadrado" role="button" data-toggle="modal" data-target="#myModal"> Afficher produit</a>
+					        		<a href="#" class="btn btn-default cuadrado" onclick="afficherModal(':idModal:');"> Afficher produit</a>
 					        	</div>
 					        	<div class="col-md-4">
 					        		<h4 class="centrer">:price:  €</h4>
@@ -275,6 +229,7 @@ function renderMoinCher(){
 					.replace(':price:', product.price)
 					.replace(':description:', product.description)
 					.replace(':id:', product._id)
+					.replace(':idModal:', product._id)
 								
 				var $article = $(article);
 				$articleContainer.append($article);		
@@ -287,4 +242,52 @@ function renderMoinCher(){
 			after: "a.readmore"
 		});
 	}, 1000);
+}
+
+function afficherModal(id){
+	var information = `<div class="row">
+	        		<div class="col-md-10 col-md-offset-1">
+	        			<h3>:name:</h3>
+	        		</div>
+	        	</div>
+	        	<div class="row">
+	        		<div class="col-md-6 col-md-offset-3">
+	        			<img class="sizeImg" src=":img:" alt=":alt:">
+	        		</div>
+	        	</div>
+	        	<div class="row">
+	        		<div class="col-md-10 col-md-offset-1">
+	        			<p>:description:</p>
+	        		</div>
+	        	</div>
+	        	<div class="row">
+	        		<div class="col-md-3 col-md-offset-1">
+	        			<h4>Stock : :stock:</h4>
+	        		</div>
+	        		<div class="col-md-2 col-md-offset-5">
+	        			<h4>:price: €</h4>
+	        		</div>
+	        	</div>`;
+
+	var $modalAffiche = $('#afficheDescrip');
+	$modalAffiche.empty();
+
+	$.ajax(`${api}/api/product/${id}`,{
+		success: function(data){				
+			var article = information
+				.replace(':name:', data.product.name)
+				.replace(':img:', data.product.picture)					
+				.replace(':alt:', data.product.name)
+				.replace(':price:', data.product.price)
+				.replace(':description:', data.product.description)
+				.replace(':stock:', data.product.stock)
+							
+			var $article = $(article);
+			$modalAffiche.append($article);
+		}
+	});
+
+	$('#myModal').modal({
+	 	show: true,
+	})
 }
