@@ -4,7 +4,6 @@ const express = require('express');
 const ProductCtrl = require('../controllers/product');
 const api = express.Router();
 
-api.use(express.static('public'));
 api.get('/product', ProductCtrl.getProducts);
 api.get('/product/homme', ProductCtrl.getProductsHommes);
 api.get('/product/femme', ProductCtrl.getProductsFemmes);

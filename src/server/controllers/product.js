@@ -36,7 +36,7 @@ function getProductsFemmes(req, res){
 		if (err) return res.status(500).send({ message: `Error al realizar la peticion: ${err}`});
 		if (!products) return res.status(404).send({message: `No existen productos`});
 
-		res.send(200, { products })
+		res.status(200).send({ products })
 	})
 }
 
@@ -45,7 +45,7 @@ function getProductsEnfants(req, res){
 		if (err) return res.status(500).send({ message: `Error al realizar la peticion: ${err}`});
 		if (!products) return res.status(404).send({message: `No existen productos`});
 
-		res.send(200, { products })
+		res.status(200).send({ products })
 	})
 }
 
@@ -54,7 +54,7 @@ function getMoinCher(req, res){
 		if (err) return res.status(500).send({ message: `Error al realizar la peticion: ${err}`});
 		if (!products) return res.status(404).send({message: `No existen productos`});
 
-		res.send(200, { products })
+		res.status(200).send({ products })
 	});
 }
 

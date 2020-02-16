@@ -93,9 +93,12 @@ function renderArticle(index, puntero, activePagination, category){
 					</div>`;
 	console.log(category);
 	$.ajax(`${api}/api/product/${category}`,{
+		method: "GET",
+		timeout: 0,
 		success: function(data){
+			console.log(data);
 			$(data.products).each(function(i, product){
-				
+
 				if(i >= index && i<= puntero ){
 					var article = thumbnail
 						.replace(':name:', product.name)
@@ -104,7 +107,7 @@ function renderArticle(index, puntero, activePagination, category){
 						.replace(':price:', product.price)
 						.replace(':description:', product.description)
 						.replace(':id:', product._id)
-						.replace(':idModal:', product._id)
+						.replace(':idModal:', product._id);
 							
 					var $article = $(article);
 					$articleContainer.append($article);
