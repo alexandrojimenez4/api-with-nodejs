@@ -1,0 +1,20 @@
+version: "3.8"
+
+services: 
+    webapp:
+        build: .
+        environment: 
+            MONGODB: "mongodb://db:27017/shop"
+            PORT: 3001
+        depends_on: 
+            - db
+        ports: 
+            - "3001:3001"
+        volumes: 
+            - .:/usr/src
+            - /usr/src/node_modules
+    
+    db:
+        image: mongo
+        volumes: 
+            - db_market
