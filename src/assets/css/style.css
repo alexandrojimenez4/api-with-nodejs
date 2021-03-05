@@ -23,7 +23,7 @@ body {
 	top:-1px;
 	right:-25%;
 	background-color: #EAD4A9;
-	background-image: url(../img/menu_bg.png);
+	/* background-image: url(../img/menu_bg.png); */
 	background-repeat: no-repeat;
 	background-position: center center;
 }
@@ -83,7 +83,7 @@ body {
 }
 #image {
 	background-attachment: fixed;
-	background-image: url(../img/home.png);
+	/* background-image: url(../img/home.png); */
 	background-repeat: no-repeat;
 }
 
@@ -133,7 +133,7 @@ body {
 	border-right-style: solid;
 	border-right-color: #CCC;
 	background-attachment: fixed;
-	background-image: url(../img/home.png);
+	/* background-image: url(../img/home.png); */
 	background-repeat: no-repeat;
 	background-position: center bottom;
 	height: 800px;
@@ -148,7 +148,7 @@ body {
 	top:0;
 	left:-47px;
 	background-color: #FFF;
-	background-image: url(../img/croix.png);
+	/* background-image: url(../img/croix.png); */
 	background-repeat: no-repeat;
 	background-position: center center;
 }
@@ -211,7 +211,7 @@ a.vers_panier {
 	display:block;
 	line-height:25px;
 	margin-bottom:15px;
-	background-image: url(../img/panier.png);
+	/* background-image: url(../img/panier.png); */
 	background-repeat: no-repeat;
 	background-position: 180px center;
 }
