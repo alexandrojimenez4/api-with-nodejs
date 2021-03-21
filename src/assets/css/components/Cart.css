@@ -1,0 +1,116 @@
+.shadow {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  justify-content: flex-end;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.Cart {
+  width: 40vw;
+  height: 100vh;
+  background-color: #E8D6CB;
+  overflow-x: scroll;
+}
+
+.Cart__header, .Cart__content, .Cart__footer {
+  padding: 25px;
+}
+
+.CartList {
+  margin: 15px 0;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.CartList > tr > td {
+  border-width: 0 0 1px 0;
+  border-style: solid;
+  border-color: #222;
+  padding-top: 5px;
+}
+
+.CartList > tr > th {
+  text-align: left;
+  border-bottom: 2px solid #222;
+}
+
+.Resume {
+  background-color: #fff;
+  border-radius: 1.25rem;
+  padding: 25px;
+  margin-bottom: 15px;
+}
+
+.Resume__Table {
+  width: 100%;
+}
+
+.Resume__Table tr th {
+  text-align: left;
+}
+
+.Resume__Table tr td {
+  text-align: right;
+}
+
+.btn {
+  display: inline-block;
+  font-weight: 400;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  border: 1px solid transparent;
+  padding: .375rem .75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: .25rem;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #D0ADA7;
+  border-color: #D0ADA7;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background-color: #5D2E46;
+}
+
+.btn-secondary {
+  color: #fff;
+  border-width: 2px;
+  border-color: #AD6A6C;
+  background-color: #ad6a6c27;
+  cursor: pointer;
+}
+
+.btn-secondary:hover {
+  background-color: #AD6A6C;
+}
+
+.btn-block {
+  display: block;
+  width: 100%;
+}
+
+.btn-lg {
+  padding: .5rem 1rem;
+  font-size: 1.25rem;
+  line-height: 1.5;
+  border-radius: .3rem;
+}
+
+.ml-10 {
+  margin-left: 10px;
+}
+
+.mt-10 {
+  margin-top: 10px;
+}
