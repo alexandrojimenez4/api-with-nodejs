@@ -1,12 +1,19 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Header from '../components/Header'
-import '../assets/css/style.css'
-import '../assets/css/colors.css'
+import Menu from '../components/Menu'
+import Cart from '../components/Cart'
 
-const App = () => (
-  <div>
-    <Header />
-  </div>
-)
+const App = () => {
+  const [open, setOpen] = useState(false)
+
+  return (
+    <div>
+      <button onClick={() => setOpen(true)}>
+        Open cart
+      </button>
+      <Cart open={open} />
+    </div>
+  )
+}
 
 export default App
